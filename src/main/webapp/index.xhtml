@@ -1,55 +1,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head>
-	<title>JSF Exemplos</title>
-	<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
-</h:head>
+    <h:head>
+        <title>JSF Exemplos</title>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+    </h:head>
 
-<h:body>
+    <h:body>
 
-	<h1>Jett - Excel</h1>
+        <h1>Jett - Excel</h1>
 
-	<h:form>
-		<ul>
-            <li>
-                <h:commandLink value="Utilizando Jett"
-                               action="#{utilizandoJettController.gerarExcel}"/>
-            </li>
+        <h:form>
+            <ul>
+                <li>
+                    <h:commandLink value="Utilizando Jett"
+                                   action="#{utilizandoJettController.gerarExcel}"/>
+                </li>
 
-			<li>
-				<h:commandLink value="Listagem Vertical"
-							   action="#{listagemVerticalController.gerarExcel}"/>
-			</li>
+                <li>
+                    <h:commandLink value="Listagem Vertical"
+                                   action="#{listagemVerticalController.gerarExcel}"/>
+                </li>
+                <li>
+                    <h:commandLink value="Listagem Vertical - Multiplas Abas"
+                                   action="#{listagemVerticalMultiplasAbasController.gerarExcelComMultiplasAbas}"/>
+                </li>
 
-			<li>
-				<h:commandLink value="Listagem Horizontal"
-							   action="#{listagemHorizontalController.gerarExcel}"/>
-			</li>
+                <li>
+                    <h:commandLink value="Listagem Horizontal"
+                                   action="#{listagemHorizontalController.gerarExcel}"/>
+                </li>
 
-			<li>
-				<h:commandLink value="Listagem Horizontal e Vertical"
-							   action="#{listagemHorizontalEVerticalController.gerarExcel}"/>
-			</li>
+                <li>
+                    <h:commandLink value="Listagem Horizontal e Vertical"
+                                   action="#{listagemHorizontalEVerticalController.gerarExcel}"/>
+                </li>
 
-            <li>
-                <h:commandLink value="Style"
-                               action="#{styleController.gerarExcel}"/>
-            </li>
+                <li>
+                    <h:commandLink value="Style"
+                                   action="#{styleController.gerarExcel}"/>
+                </li>
 
-            <li>
-                <h:commandLink value="Span"
-                               action="#{spanController.gerarExcel}"/>
-            </li>
+                <li>
+                    <h:commandLink value="Span"
+                                   action="#{spanController.gerarExcel}"/>
+                </li>
 
-            <li>
-                <h:commandLink value="Formulas"
-                               action="#{formulasController.gerarExcel}"/>
-            </li>
-		</ul>
-	</h:form>
+                <li>
+                    <h:commandLink value="Formulas"
+                                   action="#{formulasController.gerarExcel}"/>
+                </li>
+            </ul>
+        </h:form>
 
-</h:body>
+    </h:body>
 
 </html>

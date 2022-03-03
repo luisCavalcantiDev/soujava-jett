@@ -6,7 +6,6 @@ import net.sf.jett.model.Block;
 import net.sf.jett.tag.BaseTag;
 import net.sf.jett.tag.TagContext;
 import net.sf.jett.util.AttributeUtil;
-import net.sf.jett.util.SheetUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.RichTextString;
@@ -33,7 +32,9 @@ public class JettTrafficCellTag extends BaseTag {
         Block block = context.getBlock(); //Jett
 
         Cell cell = sheet.getRow(block.getTopRowNum()).getCell(block.getLeftColNum()); // POI
-        SheetUtil.setCellValue(cell, enteredValue, getAttributes().get(ATTRIBUTE_VALUE)); // Jett
+        
+        //TODO: incompativel com a v0.11.0 do Jett em relação a v0.6.0
+        //SheetUtil.setCellValue(cell, enteredValue, getAttributes().get(ATTRIBUTE_VALUE)); // Jett
         cell.setCellStyle(getCellColorByEnteredValue(sheet.getWorkbook(), enteredValue));
         return true;
     }
@@ -66,9 +67,8 @@ public class JettTrafficCellTag extends BaseTag {
             throw new TagParseException("Traffic Cell tags must not have a body.");
         }
 
-        enteredValue = BigDecimal.valueOf(
-                AttributeUtil.evaluateDouble(
-                        attributes.get(ATTRIBUTE_VALUE), beans, ATTRIBUTE_VALUE, 0));
+        //TODO: incompativel com a v0.11.0 do Jett em relação a v0.6.0
+        //enteredValue = BigDecimal.valueOf(AttributeUtil.evaluateDouble(attributes.get(ATTRIBUTE_VALUE), beans, ATTRIBUTE_VALUE, 0));
 
     }
 

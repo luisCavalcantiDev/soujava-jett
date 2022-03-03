@@ -12,31 +12,48 @@ import org.omnifaces.util.Faces;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public final class JettUtil {
 
-	private JettUtil() {}
+    private JettUtil() {
+    }
 
-	public static void gerarExcel(final String templateResourcePath, final String fileName,	final Map<String, Object> values) throws IOException, InvalidFormatException {
+    public static void gerarExcel(final String templateResourcePath, final String fileName, final Map<String, Object> values) throws IOException, InvalidFormatException {
 
-		final File templateFile = new File(Faces
-				.getRealPath(templateResourcePath));
+        final File templateFile = new File(Faces.getRealPath(templateResourcePath));
 
-		final ByteArrayOutputStream bout = new ByteArrayOutputStream();
-		final ExcelTransformer transformer = new ExcelTransformer();
-		final Workbook workbook = WorkbookFactory.create(templateFile);
+        final ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        final ExcelTransformer transformer = new ExcelTransformer();
+        final Workbook workbook = WorkbookFactory.create(templateFile);
 
-		transformer.transform(workbook, values);
-		workbook.write(bout);
+        transformer.transform(workbook, values);
+        workbook.write(bout);
 
-		Faces.sendFile(bout.toByteArray(), fileName, false);
-	}
+        Faces.sendFile(bout.toByteArray(), fileName, false);
+    }
 
-    public static void gerarExcelComTags(final String templateResourcePath, final String fileName,	final Map<String, Object> values) throws IOException, InvalidFormatException {
+    public static void gerarExcelComMultiplasAbas(final String templateResourcePath, final String fileName, 
+                                                  final List<String> templateSheetNamesList, final List<String> newSheetNamesList, final List<Map<String, Object>> values) 
+    throws IOException, InvalidFormatException {
+
+        final File templateFile = new File(Faces.getRealPath(templateResourcePath));
+
+        final ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        final ExcelTransformer transformer = new ExcelTransformer();
+        final Workbook workbook = WorkbookFactory.create(templateFile);
+
+        transformer.transform(workbook, templateSheetNamesList, newSheetNamesList, values);
+        workbook.write(bout);
+
+        Faces.sendFile(bout.toByteArray(), fileName, false);
+    }
+
+    public static void gerarExcelComTags(final String templateResourcePath, final String fileName, final Map<String, Object> values) throws IOException, InvalidFormatException {
 
         final File templateFile = new File(Faces
-                .getRealPath(templateResourcePath));
+        .getRealPath(templateResourcePath));
 
         final ByteArrayOutputStream bout = new ByteArrayOutputStream();
         final ExcelTransformer transformer = new ExcelTransformer();
