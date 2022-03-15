@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public final class JettUtil {
 
@@ -42,13 +44,24 @@ public final class JettUtil {
 
         final ByteArrayOutputStream bout = new ByteArrayOutputStream();
         final ExcelTransformer transformer = new ExcelTransformer();
-        final Workbook workbook = WorkbookFactory.create(templateFile);
+        //final Workbook workbook = WorkbookFactory.create(templateFile);
+        final XSSFWorkbook xssfWorkbook = new XSSFWorkbook(templateFile);
+        final SXSSFWorkbook sxssfWorkbook = new SXSSFWorkbook(xssfWorkbook);
 
-        transformer.transform(workbook, templateSheetNamesList, newSheetNamesList, values);
-        workbook.write(bout);
-
+        System.out.println("transform");
+        transformer.transform(xssfWorkbook, templateSheetNamesList, newSheetNamesList, values);
+        //transformer.transform(xssfWorkbook, templateSheetNamesList, newSheetNamesList, values);
+        
+        
+        System.out.println("workbook.write");
+        //workbook.write(bout);
+        sxssfWorkbook.write(bout);        
+        
+        //System.out.println("xssfWorkbook.write");
+        //xssfWorkbook.write(bout);
+        
         Faces.sendFile(bout.toByteArray(), fileName, false);
-    }
+    }   
 
     public static void gerarExcelComTags(final String templateResourcePath, final String fileName, final Map<String, Object> values) throws IOException, InvalidFormatException {
 
